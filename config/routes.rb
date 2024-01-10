@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # the root of the application
-  root "recipes#public_index"
+  # set root path for authenticated user
+  authenticated :user do
+    root 'recipes#index', as: :authenticated_root
+    get '/index', to: redirect('/')
+  end
 
-  # redirect /recipes to the root of the application
-  get "/public_index", to: redirect("/")
+  # set root path for unauthenticated user
+  unauthenticated do
+    root 'recipes#public_index', as: :unauthenticated_root
+    get '/public_index', to: redirect('/')
+  end
 
-  # resources :recipes
   resources :recipes
 end
