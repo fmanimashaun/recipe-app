@@ -1,4 +1,73 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#show</h1>
-  <p>Find me in app/views/recipes/show.html.erb</p>
+<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+  <h2 class="text-center mb-0"><%= @recipe.name %></h2>
+  <div class="flex justify-between">
+    <p>
+      Preparation Time: <%= @recipe.preparation_time %> <%=
+        'hour'.pluralize(@recipe.preparation_time)
+      %>
+    </p>
+
+    <p>Public: <%= @recipe.public ? 'Yes' : 'No' %></p>
+  </div>
+  <div class="flex justify-between">
+    <p>
+      Cooking Time: <%= @recipe.cooking_time %> <%=
+        'hour'.pluralize(@recipe.cooking_time)
+      %>
+    </p>
+  </div>
+
+  <div class="flex justify-between">
+    <h3>Steps go here...</h3>
+  </div>
+
+  <div class="flex justify-between border-b-2 border-gray-500 pb-5">
+    <button
+      class="m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer"
+    >
+      Generate Shopping lis
+    </button>
+    <button
+      class="m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer"
+    >
+      Add Ingredient
+    </button>
+  </div>
+
+  <table class="table-auto w-full border border-black">
+    <thead class="font-medium dark:bg-neutral-300">
+      <tr>
+        <th class="px-4 py-2 text-center">Food</th>
+        <th class="px-4 py-2 text-center">Quantity</th>
+        <th class="px-4 py-2 text-center">Value</th>
+        <th class="px-4 py-2 text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="dark:bg-neutral-100">
+        <td class="px-4 py-2 text-center">Item 1</td>
+        <td class="px-4 py-2 text-center">2</td>
+        <td class="px-4 py-2 text-center">$10</td>
+        <td class="px-4 py-2 text-center">Modify, remove</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-center">Item 2</td>
+        <td class="px-4 py-2 text-center">2</td>
+        <td class="px-4 py-2 text-center">$10</td>
+        <td class="px-4 py-2 text-center">Modify, remove</td>
+      </tr>
+      <tr class="dark:bg-neutral-100">
+        <td class="px-4 py-2 text-center">Item 3</td>
+        <td class="px-4 py-2 text-center">2</td>
+        <td class="px-4 py-2 text-center">$10</td>
+        <td class="px-4 py-2 text-center">Modify, remove</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-center">Item 4</td>
+        <td class="px-4 py-2 text-center">2</td>
+        <td class="px-4 py-2 text-center">$10</td>
+        <td class="px-4 py-2 text-center">Modify, remove</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

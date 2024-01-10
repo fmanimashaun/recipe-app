@@ -1,4 +1,43 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#new</h1>
-  <p>Find me in app/views/recipes/new.html.erb</p>
+<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+<h2 class="text-center mb-0">Add new Recipe</h2>
+
+<%= form_for @recipe do |f| %>
+  
+  <div class="field">
+    <%= f.label :name, class: "hidden" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Name", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  
+  <div class="field">
+    <%= f.label :preparation_time, class: "hidden" %><br>
+    <%= f.number_field :preparation_time, step: :any, placeholder: "Preparation time in hours", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cooking_time, class: "hidden" %><br>
+    <%= f.number_field :cooking_time,step: :any, placeholder: "Cooking time in hours", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: "hidden" %><br>
+    <%= f.text_area :description, placeholder: "Description", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field flex items-center">
+    <%= f.label :public %>:<br>
+    <%= f.check_box :public, class: "ml-5" %>
+  </div>
+
+
+  <div class="actions my-5">
+    <%= f.submit "Add", class:
+              'bg-gray-500 text-white w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer' %>
+  </div>
+<% end %>
 </div>
+

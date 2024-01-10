@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_index]
-  # before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show]
 
   def index; end
 
@@ -10,7 +10,20 @@ class RecipesController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
+
+    if @recipe.save
+      redirect_to @recipe, notice: 'Recipe was successfully created.'
+    else
+      render :new
+    end
+  end
 
   def edit; end
 
