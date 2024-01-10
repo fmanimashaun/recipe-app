@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_index]
-  before_action :set_recipe, only: %i[show edit update destroy]
+  # before_action :set_recipe, only: %i[show edit update destroy]
 
   def index; end
 
