@@ -1,11 +1,11 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_index]
-  before_action :set_recipe, only: %i[show]
+  before_action :set_recipe, only: %i[show edit update]
 
   def index; end
 
   def public_index
-    @recipes = Recipe.includes(:user, :recipe_foods).where(public: true).order('created_at DESC')
+    @recipes = Recipe.where(public: true).order('created_at DESC')
   end
 
   def show; end
@@ -25,7 +25,16 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
+
+  def update
+    if @recipe.update(recipe_params)
+      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   private
 

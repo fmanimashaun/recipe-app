@@ -1,7 +1,33 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#public_index</h1>
-  <p>Find me in app/views/recipes/public_index.html.erb</p>
+<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+  <h2 class="text-center mt-0">Public Recipes</h2>
 
-  <%= link_to 'Sign in', new_user_session_path %>
-  <%= link_to 'Sign up', new_user_registration_path %>
+  <div class="flex flex-col">
+      <% @recipes.each do |recipe| %>
+        <div class="flex border border-black mb-2 gap-5 p-3">
+        <div>
+          <h3 class="m-0"><%= recipe.name %></h3>
+          <p class="m-0"><%= recipe.user.name %></p>
+        </div>
+        <div>
+         <p class="m-0">Total food items: 4</p>
+         <p class="m-0">Total price: $203</p>
+        </div>
+        </div>
+      <% end %>
+  </div>
+
+  <div class="flex border border-black d-col">
+    <%=
+      link_to 'Sign in',
+              new_user_session_path,
+              class:
+                'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+    <%=
+      link_to 'Sign up',
+              new_user_registration_path,
+              class:
+                'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+  </div>
 </div>
