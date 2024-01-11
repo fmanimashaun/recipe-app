@@ -2,18 +2,20 @@
   <h2 class="text-center mt-0">Public Recipes</h2>
 
   <div class="flex flex-col">
-      <% @recipes.each do |recipe| %>
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe_path(recipe), class: "no-underline" do %>
         <div class="flex border border-black mb-2 gap-5 p-3">
-        <div>
-          <h3 class="m-0"><%= recipe.name %></h3>
-          <p class="m-0"><%= recipe.user.name %></p>
-        </div>
-        <div>
-         <p class="m-0">Total food items: 4</p>
-         <p class="m-0">Total price: $203</p>
-        </div>
+          <div>
+            <h3 class="m-0"><%= recipe.name %></h3>
+            <p class="m-0"><%= recipe.user.name %></p>
+          </div>
+          <div>
+            <p class="m-0">Total food items: 4</p>
+            <p class="m-0">Total price: $203</p>
+          </div>
         </div>
       <% end %>
+    <% end %>
   </div>
 
   <div class="flex border border-black d-col">

@@ -7,11 +7,7 @@ class RecipesController < ApplicationController
   end
 
   def public_index
-    @recipes = if user_signed_in?
-                 Recipe.where(public: true).where.not(user_id: current_user.id).order('created_at DESC')
-               else
-                 Recipe.where(public: true).order('created_at DESC')
-               end
+    @recipes = Recipe.where(public: true).order('created_at DESC')
   end
 
   def show; end
