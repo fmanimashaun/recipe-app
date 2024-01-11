@@ -1,11 +1,42 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#index</h1>
-  <p>Find me in app/views/recipes/index.html.erb</p>
+<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+  <div class="flex flex-col">
+    <% if @recipes.empty? %>
+      <p class="text-center">No recipes found.</p>
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <div class="flex border border-black mb-2 gap-5 p-3">
+          <div>
+            <h3 class="m-0"><%= recipe.name %></h3>
+            <%=
+              button_to 'Remove',
+                        recipe,
+                        method: :delete,
+                        data: {
+                          confirm: 'Are you sure?',
+                        }
+            %>
+          </div>
+          <div>
+            <p class="m-0">Total food items: 4</p>
+            <p class="m-0">Total price: $203</p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
-  <% if user_signed_in? %>
-    <%= link_to 'New Recipe', new_recipe_path %>
-    <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', new_user_session_path %>
-  <% end %>
+  <div class="flex border border-black d-col">
+    <%=
+      link_to 'Sign in',
+              new_user_session_path,
+              class:
+                'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+    <%=
+      link_to 'Sign up',
+              new_user_registration_path,
+              class:
+                'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+  </div>
 </div>

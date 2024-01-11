@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   authenticated :user do
     root 'recipes#index', as: :authenticated_root
     get '/index', to: redirect('/')
+    get '/public_index', to: 'recipes#public_index' 
   end
 
   # set root path for unauthenticated user

@@ -1,11 +1,17 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_index]
-  before_action :set_recipe, only: %i[show edit update]
+  before_action :set_recipe, only: %i[show edit update destroy]
 
-  def index; end
+  def index
+    @recipes = Recipe.where(user: current_user)
+  end
 
   def public_index
-    @recipes = Recipe.where(public: true).order('created_at DESC')
+    @recipes = if user_signed_in?
+                 Recipe.where(public: true).where.not(user_id: current_user.id).order('created_at DESC')
+               else
+                 Recipe.where(public: true).order('created_at DESC')
+               end
   end
 
   def show; end
@@ -25,8 +31,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @recipe.update(recipe_params)
@@ -34,6 +39,11 @@ class RecipesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe was successfully destroyed.'
   end
 
   private
