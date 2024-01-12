@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'foods/index'
+  get 'foods/show new edit'
   devise_for :users
 
   # set root path for authenticated user
