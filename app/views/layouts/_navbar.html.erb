@@ -1,0 +1,47 @@
+<nav class="w-full flex justify-between items-center">
+  <div class="border border-black rounded-full">
+    <%= image_tag "logo.png", class: "m-0 w-12 h-auto rounded-full" %>
+  </div>
+  <div class="flex justify-between items-center gap-5">
+    <ul class="flex justify-between gap-5 list-none">
+      <li><%= link_to "Public recipes", root_path, class: "no-underline hover:active focus:active #{'active' if current_page?(root_path)}" %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Recipes", recipes_path, class: "no-underline hover:active focus:active #{'active' if current_page?(recipes_path)}" %></li>
+        <li><%= link_to "Foods", foods_path, class: "no-underline hover:active focus:active #{'active' if current_page?(foods_path)}" %></li>
+      <% end %>
+    </ul>
+
+    <% if user_signed_in? %>
+      <%=
+        button_to(
+          'Sign Out',
+          destroy_user_session_path,
+          method: :delete,
+          class:
+              'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+        )
+      %>
+    <% else %>
+      <% unless current_page?(new_user_session_path) or current_page?(new_user_registration_path) %>
+        <div class="flex gap-5">
+      <%=
+        button_to(
+          'Sign in',
+          new_user_session_path,
+          method: :get,
+          class: 'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+        )
+      %>
+      <%=
+        button_to(
+          'Sign up',
+          new_user_registration_path,
+          method: :get,
+          class: 'text-center no-underline w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+        )
+      %>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</nav>
