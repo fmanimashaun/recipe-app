@@ -41,11 +41,7 @@
 
   <div class="flex justify-between border-b-2 border-gray-500 pb-5">
     <%= link_to "Generate Shopping list", general_shopping_list_path, class: "m-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
-    <button
-      class="m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer"
-    >
-      Add Ingredient
-    </button>
+    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe), class: "m-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
   </div>
 
   <table class="table-auto w-full border border-black">

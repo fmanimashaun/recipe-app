@@ -1,6 +1,8 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
-  def index; end
+  def index
+    @foods = Food.where(user: current_user)
+  end
 
   def new
     @food = Food.new
@@ -11,7 +13,7 @@ class FoodsController < ApplicationController
     @food.user = current_user
 
     if @food.save
-      redirect_to @food, notice: 'Food was successfully created.'
+      redirect_to foods_path, notice: 'Food was successfully created.'
     else
       render :new
     end

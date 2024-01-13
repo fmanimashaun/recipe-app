@@ -1,6 +1,11 @@
 <div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
   <div class="flex justify-end">
-    <%= link_to 'Add Food', new_food_path, class: 'text-center no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer' %>
+    <%=
+      link_to 'Add Food',
+              new_food_path,
+              class:
+                'text-center no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
   </div>
 
   <table class="table-auto w-full border border-black">
@@ -13,24 +18,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 1</td>
-        <td class="px-4 py-2 text-center">grams</td>
-        <td class="px-4 py-2 text-center">$5</td>
-        <td class="px-4 py-2 text-center">Delete</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-2 text-center">Item 2</td>
-        <td class="px-4 py-2 text-center">grams</td>
-        <td class="px-4 py-2 text-center">$1</td>
-        <td class="px-4 py-2 text-center">Delete</td>
-      </tr>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 3</td>
-        <td class="px-4 py-2 text-center">units</td>
-        <td class="px-4 py-2 text-center">$12</td>
-        <td class="px-4 py-2 text-center">Delete</td>
-      </tr>
+      <% @foods.each do |food| %>
+        <tr class="dark:bg-neutral-100">
+          <td class="px-4 py-2 text-center"><%= food.name %></td>
+          <td class="px-4 py-2 text-center">
+            <%= convert_unit(food.measurement_unit) %>
+          </td>
+          <td class="px-4 py-2 text-center">$<%= food.price %></td>
+          <td class="px-4 py-2 text-center">
+            <%=
+              button_to 'Delete',
+                      food_path(food),
+                      method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                      }
+            %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

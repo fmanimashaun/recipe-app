@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :measurement_unit, class: "hidden" %><br>
-    <%= f.select :measurement_unit, %w[mg g kg l ml units], {}, placeholder: "Measurement Unit", class:
+    <%= f.select :measurement_unit, [['grams', 'g'], ['litres', 'l'], ['units', 'units']], {}, placeholder: "Measurement Unit", class:
                        'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
   </div>
 

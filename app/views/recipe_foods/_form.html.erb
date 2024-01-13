@@ -1,0 +1,19 @@
+<%= form_for([@recipe, @recipe.recipe_foods.build]) do |f| %>
+  
+  <div class="field">
+    <%= f.label :food_id, class: "hidden" %><br />
+    <%= f.select :food_id, @foods.collect { |food| [food.name, food.id] }, include_blank: true, prompt: "Select Ingredient", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity, class: "hidden" %><br>
+    <%= f.number_field :quantity, step: :any, placeholder: "Quantity", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="actions my-5">
+    <%= f.submit "Add Ingredient", class:
+              'bg-gray-500 text-white w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer' %>
+  </div>
+<% end %>
