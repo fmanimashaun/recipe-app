@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # define resources
   resources :foods
-  resources :recipes do
+  resources :recipes, except: [:edit] do
     resources :recipe_foods, only: %i[new create edit update destroy]
   end
 
