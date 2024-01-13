@@ -4,25 +4,25 @@
       <p class="text-center">No recipes found.</p>
     <% else %>
       <% @recipes.each do |recipe| %>
-        <%= link_to recipe_path(recipe), class: "no-underline" do %>
-          <div class="flex border border-black mb-2 gap-5 p-3">
-            <div>
+        <div class="flex border border-black mb-2 gap-5 p-3">
+          <div>
+            <%= link_to recipe_path(recipe), class: "no-underline" do %>
               <h3 class="m-0"><%= recipe.name %></h3>
-              <%=
-                button_to 'Remove',
-                          recipe,
-                          method: :delete,
-                          data: {
-                            confirm: 'Are you sure?',
-                          }
-              %>
-            </div>
-            <div>
-              <p class="m-0">Total food items: 4</p>
-              <p class="m-0">Total price: $203</p>
-            </div>
+            <% end %>
+            <%=
+              button_to 'Remove',
+                        recipe,
+                        method: :delete,
+                        data: {
+                          turbo_confirm: 'Are you sure?',
+                        }, class: "text-blue-500"
+            %>
           </div>
-        <% end %>
+          <div>
+            <p class="m-0">Total food items: 4</p>
+            <p class="m-0">Total price: $203</p>
+          </div>
+        </div>
       <% end %>
     <% end %>
   </div>
