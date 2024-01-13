@@ -19,6 +19,12 @@ class FoodsController < ApplicationController
     end
   end
 
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    redirect_to foods_path, notice: 'Food was successfully deleted.'
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
