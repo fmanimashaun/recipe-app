@@ -1,4 +1,4 @@
 class ShoppingListsController < ApplicationController
-  def show
+  def index
   end
 end
