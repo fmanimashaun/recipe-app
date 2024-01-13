@@ -10,7 +10,7 @@ RSpec.describe FoodsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all foods of the current user to @foods' do
-      food = create(:food, user: user)
+      food = create(:food, user:)
       get :index
       expect(assigns(:foods)).to eq([food])
     end
@@ -61,18 +61,18 @@ RSpec.describe FoodsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested food' do
-      food = create(:food, user: user)
+      food = create(:food, user:)
       expect { delete :destroy, params: { id: food.to_param } }.to change(Food, :count).by(-1)
     end
 
     it 'redirects to the foods index' do
-      food = create(:food, user: user)
+      food = create(:food, user:)
       delete :destroy, params: { id: food.to_param }
       expect(response).to redirect_to(foods_path)
     end
 
     it 'sets a success notice' do
-      food = create(:food, user: user)
+      food = create(:food, user:)
       delete :destroy, params: { id: food.to_param }
       expect(flash[:notice]).to eq('Food was successfully deleted.')
     end
