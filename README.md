@@ -146,11 +146,6 @@ bin/dev
 - Twitter: [@fmanimashaun](https://twitter.com/fmanimashaun)
 - LinkedIn: [Fisayo Michael Animashaun ](https://linkedin.com/in/fmanimashaun)
 
-👤 **Daniel Villalba L**
-
-- GitHub: [@gdvl777](https://github.com/gdvl777)
-- X: [@gdvl777\_](https://www.x.com/gdvl777_)
-
 <p align="right"><a href="#readme-top">👆</a></p>
 
 <!-- FUTURE FEATURES -->
