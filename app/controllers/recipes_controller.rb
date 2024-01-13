@@ -10,7 +10,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.where(public: true).order('created_at DESC')
   end
 
-  def show; end
+  def show
+    flash.clear
+  end
 
   def new
     @recipe = Recipe.new
