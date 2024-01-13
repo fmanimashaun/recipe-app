@@ -12,6 +12,9 @@ class RecipesController < ApplicationController
 
   def show
     flash.clear
+
+    @recipe = Recipe.includes(:recipe_foods).find(params[:id])
+    @recipe_food = @recipe.recipe_foods.includes(:food)
   end
 
   def new

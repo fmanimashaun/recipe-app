@@ -54,30 +54,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 1</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-        <td class="px-4 py-2 text-center">Modify, remove</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-2 text-center">Item 2</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-        <td class="px-4 py-2 text-center">Modify, remove</td>
-      </tr>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 3</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-        <td class="px-4 py-2 text-center">Modify, remove</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-2 text-center">Item 4</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-        <td class="px-4 py-2 text-center">Modify, remove</td>
-      </tr>
+        <% @recipe_food.each do |ingredient| %>
+        <tr class="dark:bg-neutral-100">
+          <td class="px-4 py-2 text-center"><%= ingredient.food.name %></td>
+          <td class="px-4 py-2 text-center">
+            <%= ingredient.quantity %><%= ingredient.food.measurement_unit == 'units' ? ' ' : '' %><%= ingredient.food.measurement_unit %>
+
+          </td>
+          <td class="px-4 py-2 text-center">$<%= (ingredient.food.price * ingredient.quantity) %></td>
+          <td class="px-4 py-2 text-center">
+            <%=
+              button_to 'Delete',
+                      food_path(ingredient.food),
+                      method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                      }
+            %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
