@@ -73,7 +73,7 @@
           <%= link_to "Modify",  edit_recipe_recipe_food_path(@recipe, ingredient), class: "text-blue-500" %>
             <%=
               button_to 'Remove',
-                      recipe_recipe_food_path(@recipe, ingredient.food),
+                      recipe_recipe_food_path(@recipe, ingredient),
                       method: :delete,
                       data: {
                           turbo_confirm: 'Are you sure?',
