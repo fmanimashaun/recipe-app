@@ -10,8 +10,10 @@
             <p class="m-0"><%= recipe.user.name %></p>
           </div>
           <div>
-            <p class="m-0">Total food items: 4</p>
-            <p class="m-0">Total price: $203</p>
+            <% total_items = recipe.recipe_foods.size %>
+            <% total_price = recipe.recipe_foods.sum { |rf| rf.quantity * rf.food.price } %>
+            <p class="m-0">Total food items: <%= total_items %></p>
+            <p class="m-0">Total price: $<%= total_price %></p>
           </div>
         </div>
       <% end %>

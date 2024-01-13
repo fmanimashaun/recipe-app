@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
   end
 
   def public_index
-    @recipes = Recipe.where(public: true).order('created_at DESC')
+    @recipes = Recipe.includes(recipe_foods: :food).where(public: true).order('created_at DESC')
   end
 
   def show

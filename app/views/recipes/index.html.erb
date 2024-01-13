@@ -1,11 +1,12 @@
 <div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+  <%= link_to "Add Recipe",  new_recipe_path, class: "my-5 self-end no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
   <div class="flex flex-col">
     <% if @recipes.empty? %>
       <p class="text-center">No recipes found.</p>
     <% else %>
       <% @recipes.each do |recipe| %>
         <div class="flex border border-black mb-2 gap-5 p-3">
-          <div>
+          <div class="shrink-0 flex flex-col justify-between">
             <%= link_to recipe_path(recipe), class: "no-underline" do %>
               <h3 class="m-0"><%= recipe.name %></h3>
             <% end %>
@@ -15,13 +16,12 @@
                         method: :delete,
                         data: {
                           turbo_confirm: 'Are you sure?',
-                        }, class: "text-blue-500"
+                        }, class: "text-blue-500 underline"
             %>
           </div>
-          <div>
-            <p class="m-0">Total food items: 4</p>
-            <p class="m-0">Total price: $203</p>
-          </div>
+          <p class="m-0">
+            <%= recipe.description %>
+          </p>
         </div>
       <% end %>
     <% end %>
