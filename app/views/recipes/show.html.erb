@@ -62,14 +62,15 @@
 
           </td>
           <td class="px-4 py-2 text-center">$<%= (ingredient.food.price * ingredient.quantity) %></td>
-          <td class="px-4 py-2 text-center">
+          <td class="px-4 text-center flex justify-center gap-3">
+          <%= link_to "Modify",  edit_recipe_recipe_food_path(@recipe, ingredient), class: "text-blue-500" %>
             <%=
-              button_to 'Delete',
-                      food_path(ingredient.food),
+              button_to 'Remove',
+                      recipe_recipe_food_path(@recipe, ingredient.food),
                       method: :delete,
                       data: {
-                        confirm: 'Are you sure?',
-                      }
+                          turbo_confirm: 'Are you sure?',
+                        }, class: "text-blue-500 underline"
             %>
           </td>
         </tr>
