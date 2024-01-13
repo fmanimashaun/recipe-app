@@ -6,7 +6,7 @@
         'hour'.pluralize(@recipe.preparation_time)
       %>
     </p>
-
+    <% if current_user == @recipe.user %>
     <%= form_with(model: @recipe, html: { class: "relative inline-block w-10 align-middle select-none transition duration-200 ease-in" }) do |form| %>
       <%= form.hidden_field :public, value: @recipe.public ? 'false' : 'true' %>
       <%=
@@ -25,6 +25,7 @@
                     "toggle-label block overflow-hidden h-6 rounded-full cursor-pointer border-2 border-black #{@recipe.public ? 'bg-green-500' : 'bg-red-500'}"
       %>
     <% end %>
+     <% end %>
   </div>
   <div class="flex justify-between">
     <p>
