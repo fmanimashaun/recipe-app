@@ -1,13 +1,13 @@
-<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+<div class="w-full mx-auto flex flex-col justify-center">
   <h2 class="text-center mt-0">Shopping List</h2>
 
    <div class="flex justify-between">
     <p>
-      Amount of Food items to buy: 3
+      Amount of Food items to buy: <%= @total_missing_items %>
     </p>
 
     <p>
-      Total value of food needed: $819
+      Total value of food needed: $<%= @total_price %>
     </p>
   </div>
 
@@ -21,26 +21,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 1</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
+      <% @missing_foods.each.with_index do |food, index| %>
+      <tr class="<%= cycle('dark:bg-neutral-100', '') %>">
+        <td class="px-4 py-2 text-center"><%= food[:name] %></td>
+        <td class="px-4 py-2 text-center"><%= food[:quantity] %></td>
+        <td class="px-4 py-2 text-center"><%= number_to_currency(food[:price]) %></td>
       </tr>
-      <tr>
-        <td class="px-4 py-2 text-center">Item 2</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-      </tr>
-      <tr class="dark:bg-neutral-100">
-        <td class="px-4 py-2 text-center">Item 3</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-2 text-center">Item 4</td>
-        <td class="px-4 py-2 text-center">2</td>
-        <td class="px-4 py-2 text-center">$10</td>
-      </tr>
+    <% end %>
     </tbody>
   </table>
 </div>
