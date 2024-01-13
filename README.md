@@ -10,6 +10,7 @@
 - [🛠 Built With](#built-with)
   - [Tech Stack](#tech-stack)
   - [Key Features](#key-features)
+  - [Screenshots](#screenshots)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -73,6 +74,23 @@ The **Recipe app** is a comprehensive solution for managing recipes, ingredients
 - [x] Feature to Generate Shopping List Based on Inventory and Recipe Requirements
 - [x] Feature to Make Recipes Public for Sharing
 - [x] PostgreSQL Database Integration
+
+<p align="right"><a href="#readme-top">👆</a></p>
+
+### Screenshots <a name="key-features"></a>
+
+<img src="screenshots/public_index-1.png" alt="public index without login" width="500"/>
+<img src="screenshots/public_index-2.png" alt="public index with login" width="500"/>
+<img src="screenshots/login.png" alt="sign in page" width="500"/>
+<img src="screenshots/signup.png" alt="Sign up page" width="500"/>
+<img src="screenshots/recipes.png" alt="recipes list page" width="500"/>
+<img src="screenshots/foods.png" alt="food list page" width="500"/>
+<img src="screenshots/shoppinglist.png" alt="shopping list page" width="500"/>
+<img src="screenshots/details-1.png" alt="detail page with user" width="500"/>
+<img src="screenshots/details-2.png" alt="detail page without user" width="500"/>
+<img src="screenshots/add-food.png" alt="Add food" width="500"/>
+<img src="screenshots/add-ingredient.png" alt="Add ingredient" width="500"/>
+<img src="screenshots/modify-ingredient.png" alt="modify ingredient" width="500"/>
 
 <p align="right"><a href="#readme-top">👆</a></p>
 
