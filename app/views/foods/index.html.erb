@@ -1,4 +1,36 @@
-<div>
-  <h1 class="font-bold text-4xl">Foods#index</h1>
-  <p>Find me in app/views/foods/index.html.erb</p>
+<div class="w-full max-w-[500px] mx-auto flex flex-col justify-center">
+  <div class="flex justify-end">
+    <%= link_to 'Add Food', new_food_path, class: 'text-center no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer' %>
+  </div>
+
+  <table class="table-auto w-full border border-black">
+    <thead class="font-medium dark:bg-neutral-300">
+      <tr>
+        <th class="px-4 py-2 text-center">Food</th>
+        <th class="px-4 py-2 text-center">Measurement nit</th>
+        <th class="px-4 py-2 text-center">Unit price</th>
+        <th class="px-4 py-2 text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="dark:bg-neutral-100">
+        <td class="px-4 py-2 text-center">Item 1</td>
+        <td class="px-4 py-2 text-center">grams</td>
+        <td class="px-4 py-2 text-center">$5</td>
+        <td class="px-4 py-2 text-center">Delete</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-center">Item 2</td>
+        <td class="px-4 py-2 text-center">grams</td>
+        <td class="px-4 py-2 text-center">$1</td>
+        <td class="px-4 py-2 text-center">Delete</td>
+      </tr>
+      <tr class="dark:bg-neutral-100">
+        <td class="px-4 py-2 text-center">Item 3</td>
+        <td class="px-4 py-2 text-center">units</td>
+        <td class="px-4 py-2 text-center">$12</td>
+        <td class="px-4 py-2 text-center">Delete</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
