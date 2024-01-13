@@ -1,0 +1,31 @@
+<%= form_for @food do |f| %>
+  
+  <div class="field">
+    <%= f.label :name, class: "hidden" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Name", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, class: "hidden" %><br>
+    <%= f.number_field :price, step: :any, placeholder: "Price", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :measurement_unit, class: "hidden" %><br>
+    <%= f.select :measurement_unit, [['grams', 'g'], ['litres', 'l'], ['units', 'units']], {}, placeholder: "Measurement Unit", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity, class: "hidden" %><br>
+    <%= f.number_field :quantity, step: :any, placeholder: "Quantity", class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black' %>
+  </div>
+
+  <div class="actions my-5">
+    <%= f.submit (@food.persisted? ? "Update" : "Add"), class:
+              'bg-gray-500 text-white w-full m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer' %>
+  </div>
+<% end %>

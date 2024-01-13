@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
+  get 'shopping_lists/index'
   devise_for :users
 
-  # set root path for authenticated user
-  authenticated :user do
-    root 'recipes#index', as: :authenticated_root
-    get '/index', to: redirect('/')
+  # define resources
+  resources :foods
+  resources :recipes, except: [:edit] do
+    resources :recipe_foods, only: %i[new create edit update destroy]
   end
 
-  # set root path for unauthenticated user
-  unauthenticated do
-    root 'recipes#public_index', as: :unauthenticated_root
-    get '/public_index', to: redirect('/')
-  end
-
-  resources :recipes
+  # define root
+  root to: 'recipes#public_index'
+  get '/general_shopping_list' , to: 'shopping_lists#index'
 end
