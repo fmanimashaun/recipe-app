@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def convert_unit(unit)
     case unit
     when 'g'
