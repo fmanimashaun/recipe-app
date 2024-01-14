@@ -50,7 +50,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   def set_foods
-    @foods = Food.all
+    @foods = Food.where(user: current_user)
   end
 
   def recipe_food_params
