@@ -9,7 +9,7 @@ module ShoppingListsHelper
         food_name = recipe_food.food.name
         required_quantity = recipe_food.quantity
 
-        available_food = available_foods.find_by(name: food_name)
+        available_food = available_foods.find { |food| food.name == food_name }
 
         if available_food
           available_quantity = available_food.quantity
