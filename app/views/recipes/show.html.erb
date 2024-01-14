@@ -7,25 +7,27 @@
       %>
     </p>
     <% if current_user == @recipe.user %>
-    <%= form_with(model: @recipe, html: { class: "relative inline-block w-10 align-middle select-none transition duration-200 ease-in" }) do |form| %>
-      <%= form.hidden_field :public, value: @recipe.public ? 'false' : 'true' %>
-      <%=
-        form.submit '',
-                    id: 'toggle',
-                    role: 'switch',
-                    aria_checked: @recipe.public ? 'true' : 'false',
+      <%= form_with(model: @recipe, html: { class: "relative inline-block w-10 align-middle select-none transition duration-200 ease-in" }) do |form| %>
+        <%=
+          form.hidden_field :public, value: @recipe.public ? 'false' : 'true'
+        %>
+        <%=
+          form.submit '',
+                      id: 'toggle',
+                      role: 'switch',
+                      aria_checked: @recipe.public ? 'true' : 'false',
+                      class:
+                        "toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-black appearance-none cursor-pointer #{@recipe.public ? 'translate-x-full' : 'translate-x-0'}",
+                      onclick: 'this.form.submit()'
+        %>
+        <%=
+          label_tag 'toggle',
+                    '',
                     class:
-                      "toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-black appearance-none cursor-pointer #{@recipe.public ? 'translate-x-full' : 'translate-x-0'}",
-                    onclick: 'this.form.submit()'
-      %>
-      <%=
-        label_tag 'toggle',
-                  '',
-                  class:
-                    "toggle-label block overflow-hidden h-6 rounded-full cursor-pointer border-2 border-black #{@recipe.public ? 'bg-green-500' : 'bg-red-500'}"
-      %>
+                      "toggle-label block overflow-hidden h-6 rounded-full cursor-pointer border-2 border-black #{@recipe.public ? 'bg-green-500' : 'bg-red-500'}"
+        %>
+      <% end %>
     <% end %>
-     <% end %>
   </div>
   <div class="flex justify-between">
     <p>
@@ -39,11 +41,21 @@
     <h3>Steps go here...</h3>
   </div>
 
-<% if current_user == @recipe.user %>
-  <div class="flex justify-between border-b-2 border-gray-500 pb-5">
-    <%= link_to "Generate Shopping list", general_shopping_list_path, class: "m-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
-    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe), class: "m-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
-  </div>
+  <% if current_user == @recipe.user %>
+    <div class="flex justify-between border-b-2 border-gray-500 pb-5">
+      <%=
+        link_to 'Generate Shopping list',
+                general_shopping_list_path,
+                class:
+                  'm-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+      %>
+      <%=
+        link_to 'Add Ingredient',
+                new_recipe_recipe_food_path(@recipe),
+                class:
+                  'm-0 no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+      %>
+    </div>
   <% end %>
 
   <table class="table-auto w-full border border-black">
@@ -58,30 +70,44 @@
     <tbody>
       <% if @recipe_food.empty? %>
         <tr class="dark:bg-neutral-100">
-          <td class="px-4 py-2 text-center" colspan="4">No ingredients added</td>
+          <td class="px-4 py-2 text-center" colspan="4">
+            No ingredients added
+          </td>
         </tr>
       <% else %>
         <% @recipe_food.each.with_index do |ingredient, index| %>
-        <tr class="<%= cycle('dark:bg-neutral-100', '') %>">
-          <td class="px-4 py-2 text-center"><%= ingredient.food.name %></td>
-          <td class="px-4 py-2 text-center">
-            <%= ingredient.quantity %><%= ingredient.food.measurement_unit == 'units' ? ' ' : '' %><%= ingredient.food.measurement_unit %>
-
-          </td>
-          <td class="px-4 py-2 text-center"><%= number_to_currency(ingredient.food.price * ingredient.quantity) %></td>
-          <td class="px-4 text-center flex justify-center gap-3">
-          <%= link_to "Modify",  edit_recipe_recipe_food_path(@recipe, ingredient), class: "text-blue-500" %>
-            <%=
-              button_to 'Remove',
-                      recipe_recipe_food_path(@recipe, ingredient),
-                      method: :delete,
-                      data: {
-                          turbo_confirm: 'Are you sure?',
-                        }, class: "text-blue-500 underline"
-            %>
-          </td>
-        </tr>
-      <% end %>
+          <tr class="<%= cycle('dark:bg-neutral-100', '') %>">
+            <td class="px-4 py-2 text-center"><%= ingredient.food.name %></td>
+            <td class="px-4 py-2 text-center">
+              <%= ingredient.quantity %><%=
+                ingredient.food.measurement_unit == 'units' ? ' ' : ''
+              %><%= ingredient.food.measurement_unit %>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <%=
+                number_to_currency(ingredient.food.price * ingredient.quantity)
+              %>
+            </td>
+            <td class="px-4 text-center flex justify-center gap-3">
+              <% if current_user == @recipe.user %>
+                <%=
+                  link_to 'Modify',
+                          edit_recipe_recipe_food_path(@recipe, ingredient),
+                          class: 'text-blue-500'
+                %>
+                <%=
+                  button_to 'Remove',
+                            recipe_recipe_food_path(@recipe, ingredient),
+                            method: :delete,
+                            data: {
+                              turbo_confirm: 'Are you sure?',
+                            },
+                            class: 'text-blue-500 underline'
+                %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
