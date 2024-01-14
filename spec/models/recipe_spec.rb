@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:recipe) { FactoryBot.build(:recipe, user: user) }
+  let(:recipe) { FactoryBot.build(:recipe, user:) }
 
   it 'is valid with valid attributes' do
     expect(recipe).to be_valid
@@ -46,8 +46,8 @@ RSpec.describe Recipe, type: :model do
   describe '#foods' do
     it 'can have many foods' do
       recipe.save
-      FactoryBot.create(:recipe_food, recipe: recipe)
-      FactoryBot.create(:recipe_food, recipe: recipe)
+      FactoryBot.create(:recipe_food, recipe:)
+      FactoryBot.create(:recipe_food, recipe:)
 
       expect(recipe.foods.length).to eq 2
     end

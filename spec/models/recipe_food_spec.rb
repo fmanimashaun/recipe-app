@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RecipeFood, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:food) { FactoryBot.create(:food, user: user) }
-  let(:recipe) { FactoryBot.create(:recipe, user: user) }
-  let(:recipe_food) { FactoryBot.build(:recipe_food, recipe: recipe, food: food) }
+  let(:food) { FactoryBot.create(:food, user:) }
+  let(:recipe) { FactoryBot.create(:recipe, user:) }
+  let(:recipe_food) { FactoryBot.build(:recipe_food, recipe:, food:) }
 
   it 'is valid with valid attributes' do
     expect(recipe_food).to be_valid

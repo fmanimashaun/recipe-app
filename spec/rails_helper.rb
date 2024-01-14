@@ -44,12 +44,11 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :request
 
-
   # RSpec Rails
-  [:controller, :view, :request].each do |type|
-    config.include ::Rails::Controller::Testing::TestProcess, :type => type
-    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
-    config.include ::Rails::Controller::Testing::Integration, :type => type
+  %i[controller view request].each do |type|
+    config.include(Rails::Controller::Testing::TestProcess, type:)
+    config.include(Rails::Controller::Testing::TemplateAssertions, type:)
+    config.include Rails::Controller::Testing::Integration, type:
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

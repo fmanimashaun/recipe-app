@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
   describe '#recipes' do
     it 'can have many recipes' do
       user.save
-      FactoryBot.create(:recipe, user: user)
-      FactoryBot.create(:recipe, user: user)
+      FactoryBot.create(:recipe, user:)
+      FactoryBot.create(:recipe, user:)
 
       expect(user.recipes.length).to eq 2
     end

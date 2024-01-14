@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:food) { FactoryBot.build(:food, user: user) }
+  let(:food) { FactoryBot.build(:food, user:) }
 
   it 'is valid with valid attributes' do
     expect(food).to be_valid
