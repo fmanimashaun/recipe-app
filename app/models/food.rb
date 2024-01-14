@@ -7,8 +7,4 @@ class Food < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :measurement_unit, presence: true, inclusion: { in: %w[g l units] }
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-
-  def total_price
-    (price * quantity).round(2)
-  end
 end
