@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ShoppingListsController, type: :controller do
   let(:user) { create(:user) }
-  let(:food) { create(:food, user: user) }
-  let(:recipe) { create(:recipe, user: user) }
-  let!(:recipe_food) { create(:recipe_food, recipe: recipe, food: food) }
+  let(:food) { create(:food, user:) }
+  let(:recipe) { create(:recipe, user:) }
+  let!(:recipe_food) { create(:recipe_food, recipe:, food:) }
 
   before do
     sign_in user

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "recipe_foods/edit", type: :view do
+RSpec.describe 'recipe_foods/edit', type: :view do
   let(:user) { create(:user) }
-  let(:recipe) { create(:recipe, user: user) }
-  let(:recipe_food) { create(:recipe_food, recipe: recipe) }
-  let(:foods) { create_list(:food, 3, user: user) }
+  let(:recipe) { create(:recipe, user:) }
+  let(:recipe_food) { create(:recipe_food, recipe:) }
+  let(:foods) { create_list(:food, 3, user:) }
 
   before do
     assign(:recipe, recipe)
@@ -13,7 +13,7 @@ RSpec.describe "recipe_foods/edit", type: :view do
     render
   end
 
-  it "displays the edit recipe_food form" do
+  it 'displays the edit recipe_food form' do
     expect(rendered).to include('Modify Ingredient')
   end
 end

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ShoppingListsHelper, type: :helper do
   let(:user) { create(:user) }
-  let(:food) { create(:food, user: user, quantity: 5, price: 1.5) }
-  let(:recipe) { create(:recipe, user: user) }
-  let!(:recipe_food) { create(:recipe_food, recipe: recipe, food: food, quantity: 10) }
+  let(:food) { create(:food, user:, quantity: 5, price: 1.5) }
+  let(:recipe) { create(:recipe, user:) }
+  let!(:recipe_food) { create(:recipe_food, recipe:, food:, quantity: 10) }
 
   describe '#calculate_missing_foods' do
     it 'calculates missing foods, total missing items, and total price' do
