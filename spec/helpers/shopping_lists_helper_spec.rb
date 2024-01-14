@@ -1,15 +1,20 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ShoppingListsHelper. For example:
-#
-# describe ShoppingListsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ShoppingListsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+  let(:food) { create(:food, user: user, quantity: 5, price: 1.5) }
+  let(:recipe) { create(:recipe, user: user) }
+  let!(:recipe_food) { create(:recipe_food, recipe: recipe, food: food, quantity: 10) }
+
+  describe '#calculate_missing_foods' do
+    it 'calculates missing foods, total missing items, and total price' do
+      recipes = [recipe]
+      available_foods = [food]
+      missing_foods, total_missing_items, total_price = helper.calculate_missing_foods(recipes, available_foods)
+
+      expect(missing_foods).to eq([{ name: food.name, quantity: 5, price: food.price }])
+      expect(total_missing_items).to eq(1)
+      expect(total_price).to eq(7.5)
+    end
+  end
 end
