@@ -1,11 +1,29 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#index</h1>
-  <p>Find me in app/views/recipes/index.html.erb</p>
-
-  <% if user_signed_in? %>
-    <%= link_to 'New Recipe', new_recipe_path %>
-    <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', new_user_session_path %>
-  <% end %>
+<div class="w-full mx-auto flex flex-col justify-center">
+  <%= link_to "Add Recipe",  new_recipe_path, class: "my-5 self-end no-underline border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer" %>
+  <div class="flex flex-col">
+    <% if @recipes.empty? %>
+      <p class="text-center">No recipes found.</p>
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <div class="flex border border-black mb-2 gap-5 p-3">
+          <div class="shrink-0 flex flex-col justify-between">
+            <%= link_to recipe_path(recipe), class: "no-underline" do %>
+              <h3 class="m-0"><%= recipe.name %></h3>
+            <% end %>
+            <%=
+              button_to 'Remove',
+                        recipe,
+                        method: :delete,
+                        data: {
+                          turbo_confirm: 'Are you sure?',
+                        }, class: "text-blue-500 underline"
+            %>
+          </div>
+          <p class="m-0">
+            <%= recipe.description %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

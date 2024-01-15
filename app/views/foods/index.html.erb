@@ -1,0 +1,45 @@
+<div class="w-full mx-auto flex flex-col justify-center">
+  <div class="flex justify-end">
+    <%=
+      link_to 'Add Food',
+              new_food_path,
+              class:
+                'text-center no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+  </div>
+
+  <table class="table-auto w-full border border-black">
+    <thead class="font-medium dark:bg-neutral-300">
+      <tr>
+        <th class="px-4 py-2 text-center">Food</th>
+        <th class="px-4 py-2 text-center">Measurement nit</th>
+        <th class="px-4 py-2 text-center">Unit price</th>
+        <th class="px-4 py-2 text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each.with_index do |food, index| %>
+        <tr class="<%= cycle('dark:bg-neutral-100', '') %>">
+          <td class="px-4 py-2 text-center"><%= food.name %></td>
+          <td class="px-4 py-2 text-center">
+            <%= convert_unit(food.measurement_unit) %>
+          </td>
+          <td class="px-4 py-2 text-center">
+            <%= number_to_currency(food.price) %>
+          </td>
+          <td class="px-4 py-2 text-center">
+            <%=
+              button_to 'Delete',
+                        food_path(food),
+                        method: :delete,
+                        data: {
+                          turbo_confirm: 'Are you sure?',
+                        },
+                        class: 'text-blue-500 underline'
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

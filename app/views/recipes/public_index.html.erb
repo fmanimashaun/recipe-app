@@ -1,7 +1,22 @@
-<div>
-  <h1 class="font-bold text-4xl">Recipes#public_index</h1>
-  <p>Find me in app/views/recipes/public_index.html.erb</p>
+<div class="w-full mx-auto flex flex-col justify-center">
+  <h2 class="text-center mt-0">Public Recipes</h2>
 
-  <%= link_to 'Sign in', new_user_session_path %>
-  <%= link_to 'Sign up', new_user_registration_path %>
+  <div class="flex flex-col">
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe_path(recipe), class: "no-underline" do %>
+        <div class="flex border border-black mb-2 gap-5 p-3">
+          <div>
+            <h3 class="m-0"><%= recipe.name %></h3>
+            <p class="m-0"><%= recipe.user.name %></p>
+          </div>
+          <div>
+            <% total_items = recipe.recipe_foods.size %>
+            <% total_price = recipe.recipe_foods.sum { |rf| rf.quantity * rf.food.price } %>
+            <p class="m-0">Total food items: <%= total_items %></p>
+            <p class="m-0">Total price: $<%= total_price %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
